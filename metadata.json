@@ -1,0 +1,6 @@
+{
+  "name": "Life OS + Second Brain",
+  "description": "An intelligent Personal Operating System to capture, understand, organize, plan, and manage life with unified knowledge, tasks, and habits.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

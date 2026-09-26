@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with authentication and system preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The Firebase Auth UID" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "displayName": { "type": "string", "description": "Display name of the user" },
+        "photoURL": { "type": "string", "description": "Avatar photo URL" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Profile creation timestamp" },
+        "lastLoginAt": { "type": "string", "format": "date-time", "description": "Last login timestamp" }
+      },
+      "required": ["uid", "email"]
+    },
+    "UserWorkspace": {
+      "title": "UserWorkspace",
+      "description": "User synced workspace data for Life OS",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner UID" },
+        "userName": { "type": "string", "description": "User preferred name" },
+        "theme": { "type": "string", "enum": ["system", "light", "dark"], "description": "Theme preference" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      },
+      "required": ["userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Private user profiles readable and writable only by the authenticated owner"
+    },
+    "/users/{userId}/workspaces/{workspaceId}": {
+      "schema": "UserWorkspace",
+      "description": "User workspaces containing preferences and configuration"
+    }
+  }
+}
